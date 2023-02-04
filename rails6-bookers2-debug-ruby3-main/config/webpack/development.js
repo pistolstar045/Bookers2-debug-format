@@ -13,4 +13,3 @@ environment.plugins.prepend(
     Popper: 'popper.js'
   })
 )
-
