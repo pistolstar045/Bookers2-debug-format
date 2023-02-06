@@ -1,9 +1,10 @@
 class BooksController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-
+ before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
+    @book_comment = BookComment.new
   end
 
   def index
@@ -24,7 +25,6 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
-
   end
 
   def update
@@ -50,12 +50,11 @@ class BooksController < ApplicationController
   
   def ensure_correct_user
     @book = Book.find(params[:id])
-    unless @book.user ==current_user
+    unless @book.user == current_user
       redirect_to books_path
     end
   end
 end
-
 
 
 
